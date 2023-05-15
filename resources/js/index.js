@@ -10,29 +10,32 @@ select.addEventListener("change", (event) => {
 });
 
 const fetchDataByCountry = async (country) => {
-  await fetch(
-    `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=314d6a77c6064b91a77439eb6a034ef8`
-  )
-    .then((res) => res.json())
-    .then((res) => res.articles)
-    .then((res) =>
-      res.forEach((item) => {
-        console.log(item);
-        let liDOM = document.createElement("li.list-group-item");
-        liDOM.innerHTML = `
-        <div class="card p-2 d-flex text-start mb-4" >
-          <div class="card-body">
-            <h5 class="card-title">
-              <a href=${item.url} class="text-primary text-decoration-none" target="_blank">${item.author}</a>
-            </h5>
-            <p class="card-text">${item.title}</p>
-            <a href=${item.url} class="btn btn-primary" target="_blank">Read More...</a>
+  try {
+    await fetch(
+      `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=314d6a77c6064b91a77439eb6a034ef8`
+    )
+      .then((res) => res.json())
+      .then((res) => res.articles)
+      .then((res) =>
+        res.forEach((item) => {
+          let liDOM = document.createElement("li.list-group-item");
+          liDOM.innerHTML = `
+          <div class="card p-2 d-flex text-start mb-4" >
+            <div class="card-body">
+              <h5 class="card-title">
+                <a href=${item.url} class="text-primary text-decoration-none" target="_blank">${item.author}</a>
+              </h5>
+              <p class="card-text">${item.title}</p>
+              <a href=${item.url} class="btn btn-primary" target="_blank">Read More...</a>
+            </div>
           </div>
-        </div>
-        `;
-        newsListDom.appendChild(liDOM);
-      })
-    );
+          `;
+          newsListDom.appendChild(liDOM);
+        })
+      );
+  } catch (error) {
+    console.log(e);
+  }
 };
 
 fetchDataByCountry(select.value);
