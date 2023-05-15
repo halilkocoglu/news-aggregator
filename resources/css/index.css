@@ -2,7 +2,7 @@
     position: fixed;
     bottom: 0;
     right: 0;
-    margin-right: 15rem;
+    margin-right: 3rem;
     margin-bottom: 3rem;
 }
 
@@ -14,4 +14,13 @@
 }
 .goUpButton:hover {
     opacity: 0.7;
+}
+
+@media screen and (max-width: 750px) {
+    .goUpButton {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        margin: 10px;
+    }
 }
